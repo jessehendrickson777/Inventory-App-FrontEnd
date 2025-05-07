@@ -54,3 +54,47 @@ document.getElementById("confirmYes1").addEventListener("click", () => {
 document.getElementById("confirmNo1").addEventListener("click", () => {
   document.getElementById("customConfirm1").style.display = "none";
 });
+
+//submit button & inputFields check
+document.querySelector(".submit").addEventListener("click", (e) => {
+  e.preventDefault();
+  //   const inputFields = [
+  //     '[name="userEmail"]',
+  //     '[name="annualVolume"]',
+  //     '[name="directLaborCost"]',
+  //     '[name="indirectLaborCost"]',
+  //     '[name="mpg"]',
+  //     '[name="driverWage"]',
+  //     '[name="distance"]',
+  //     '[name="unitsPerLoad"]',
+  //     '[name="turnaroundTime"]',
+  //     '[name="leaseCost"]',
+  //     'select[name="indirectLaborPercentage"]',
+  //     'select[name="margin"]',
+  //   ];
+
+  //   const isAnyEmpty = inputFields.some((selector) => {
+  //     const el = document.querySelector(selector);
+  //     return el.value.trim() === "";
+  //   });
+
+  //   if (isAnyEmpty) {
+  //     document.getElementById("missedQuestion").style.display = "flex";
+  //   } else {
+  document.getElementById("customConfirm2").style.display = "flex";
+  //   }
+});
+
+document.getElementById("confirmYes2").addEventListener("click", () => {
+  document.getElementById("customConfirm2").style.display = "none";
+  submitData();
+});
+
+document.getElementById("confirmNo2").addEventListener("click", () => {
+  document.getElementById("customConfirm2").style.display = "none";
+});
+
+//missed questions modal
+document.getElementById("missed").addEventListener("click", () => {
+  document.getElementById("missedQuestion").style.display = "none";
+});

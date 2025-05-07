@@ -309,19 +309,40 @@
         </div>
 
         <div class="submit-section">
-          <button type="submit">Submit Counts</button>
+          <button class="submit" type="submit">Submit Counts</button>
         </div>
       </form>
     </div>
-    <div id="customConfirm1" style="display: none" class="confirmModal">
-      <div class="confirmBox">
-        <p>
-          Are you sure you want to reset the quote form? Any data not submitted
-          will be lost.
-        </p>
-        <button id="confirmYes1">Yes, Reset</button>
-        <button id="confirmNo1">Cancel</button>
+
+    <div class="custom-Modal">
+      <div id="customConfirm1" style="display: none" class="confirmModal">
+        <div class="confirmBox">
+          <p>
+            Are you sure you want to reset the quote form? Any data not
+            submitted will be lost.
+          </p>
+          <button id="confirmYes1">Yes, Reset</button>
+          <button id="confirmNo1">Cancel</button>
+        </div>
       </div>
+
+      <div id="customConfirm2" style="display: none" class="confirmModal">
+        <div class="confirmBox">
+          <p>Are you sure you want to submit trailer inventory?</p>
+          <button id="confirmYes2">Yes, Submit</button>
+          <button id="confirmNo2">Cancel</button>
+        </div>
+      </div>
+
+      <!-- <div id="missedQuestion" style="display: none" class="confirmModal">
+      <div class="missedQ">
+        <p>
+          Not all questions have been answered. Submitting an incomplete form
+          can cause inaccurate output. Please answer each question.
+        </p>
+        <button id="missed">Okay</button>
+      </div>
+    </div> -->
     </div>
     <script src="app.js"></script>
   </body>
