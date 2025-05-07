@@ -48,10 +48,9 @@ dropdown.addEventListener("mouseleave", () => {
 
 document.getElementById("confirmYes1").addEventListener("click", () => {
   document.getElementById("customConfirm1").style.display = "none";
-  resetForm();
 });
 
-document.getElementById("confirmNo1").addEventListener("click", () => {
+document.getElementById("customConfirm1").addEventListener("click", () => {
   document.getElementById("customConfirm1").style.display = "none";
 });
 
@@ -88,8 +87,22 @@ document.querySelector(".submit").addEventListener("click", (e) => {
     return el.value.trim() === "";
   });
 
+  const fieldsToSum = inputFields.filter((selector) => {
+    return (
+      selector !== '[name="trailerNumber"]' && selector !== '[name="date"]'
+    );
+  });
+
+  const sum = fieldsToSum.reduce((acc, selector) => {
+    const el = document.querySelector(selector);
+    return acc + (parseInt(el.value) || 0);
+  }, 0);
+
   if (isAnyEmpty) {
     document.getElementById("missedQuestion").style.display = "flex";
+  } else if (sum === 0) {
+    console.log(sum);
+    document.getElementById("customConfirm1").style.display = "flex";
   } else {
     document.getElementById("customConfirm2").style.display = "flex";
   }
