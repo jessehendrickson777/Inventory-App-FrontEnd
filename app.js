@@ -1,0 +1,56 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const dateInput = document.getElementById("date");
+  const today = new Date().toISOString().split("T")[0];
+  dateInput.value = today;
+});
+
+function increment(inputId) {
+  const input = document.getElementById(inputId);
+  input.value = parseInt(input.value || 0) + 1;
+}
+
+function decrement(inputId) {
+  inputId.value = Math.max(0, parseInt(inputId.value || 0) - 1);
+  if (inputId.value == 0) {
+    inputId.value = 0;
+  }
+}
+
+const plusButtons = document.querySelectorAll(".plus-button");
+plusButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    const inputId = button.previousElementSibling.id;
+    increment(inputId);
+  });
+});
+
+const minusButtons = document.querySelectorAll(".minus-button");
+minusButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    const inputId = button.parentElement.querySelector("input");
+    decrement(inputId);
+  });
+});
+
+dropdown = document.querySelector(".dropdown");
+const dropdownButton = document.querySelector(".dropdown-button");
+const dropdownMenu = document.querySelector(".dropdown-menu");
+
+dropdownButton.addEventListener("mouseenter", (e) => {
+  e.stopPropagation();
+  dropdownMenu.classList.toggle("show");
+});
+
+// Close the dropdown if clicked outside
+dropdown.addEventListener("mouseleave", () => {
+  dropdownMenu.classList.remove("show");
+});
+
+document.getElementById("confirmYes1").addEventListener("click", () => {
+  document.getElementById("customConfirm1").style.display = "none";
+  resetForm();
+});
+
+document.getElementById("confirmNo1").addEventListener("click", () => {
+  document.getElementById("customConfirm1").style.display = "none";
+});
