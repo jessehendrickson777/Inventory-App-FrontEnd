@@ -57,37 +57,54 @@ document.getElementById("confirmNo1").addEventListener("click", () => {
 
 //submit button & inputFields check
 document.querySelector(".submit").addEventListener("click", (e) => {
-  e.preventDefault();
-  //   const inputFields = [
-  //     '[name="userEmail"]',
-  //     '[name="annualVolume"]',
-  //     '[name="directLaborCost"]',
-  //     '[name="indirectLaborCost"]',
-  //     '[name="mpg"]',
-  //     '[name="driverWage"]',
-  //     '[name="distance"]',
-  //     '[name="unitsPerLoad"]',
-  //     '[name="turnaroundTime"]',
-  //     '[name="leaseCost"]',
-  //     'select[name="indirectLaborPercentage"]',
-  //     'select[name="margin"]',
-  //   ];
+  //   e.preventDefault();
+  const inputFields = [
+    '[name="trailerNumber"]',
+    '[name="date"]',
+    '[name="unprocessedWares"]',
+    '[name="reprocessedWares"]',
+    '[name="unprocessedTextiles"]',
+    '[name="unprocessedBooks"]',
+    '[name="unprocessedShoes"]',
+    '[name="shopGoodwillSkid"]',
+    '[name="salvageWares"]',
+    '[name="salvageTextiles"]',
+    '[name="salvageBooks"]',
+    '[name="salvageShoes"]',
+    '[name="heavySalvage"]',
+    '[name="salvageGlass"]',
+    '[name="furniture"]',
+    '[name="cardboard"]',
+    '[name="trash"]',
+    '[name="plasticSkids"]',
+    '[name="plasticSkidSleeves"]',
+    '[name="woodenSkids"]',
+    '[name="woodenSkidSleeves"]',
+    '[name="totes"]',
+  ];
 
-  //   const isAnyEmpty = inputFields.some((selector) => {
-  //     const el = document.querySelector(selector);
-  //     return el.value.trim() === "";
-  //   });
+  const isAnyEmpty = inputFields.some((selector) => {
+    const el = document.querySelector(selector);
+    return el.value.trim() === "";
+  });
 
-  //   if (isAnyEmpty) {
-  //     document.getElementById("missedQuestion").style.display = "flex";
-  //   } else {
-  document.getElementById("customConfirm2").style.display = "flex";
-  //   }
+  if (isAnyEmpty) {
+    document.getElementById("missedQuestion").style.display = "flex";
+  } else {
+    document.getElementById("customConfirm2").style.display = "flex";
+  }
 });
 
 document.getElementById("confirmYes2").addEventListener("click", () => {
+  const form = document.querySelector("form");
   document.getElementById("customConfirm2").style.display = "none";
-  submitData();
+  // Log form data to the console
+  const formData = new FormData(form);
+  formData.forEach((value, key) => {
+    console.log(`${key}: ${value}`);
+  });
+
+  form.submit();
 });
 
 document.getElementById("confirmNo2").addEventListener("click", () => {
