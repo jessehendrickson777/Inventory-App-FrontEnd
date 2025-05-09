@@ -99,6 +99,7 @@ h1 {
   cursor: pointer; /* Pointer cursor on hover */
   width: auto; /* Set a fixed width */
   height: auto;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
 .dropdown-bar:hover {
@@ -114,6 +115,7 @@ h1 {
   cursor: pointer; /* Pointer cursor on hover */
   padding: 10px; /* Add padding for clickable area */
   outline: none; /* Remove focus outline */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
 /* Dropdown Button Hover Effect */
@@ -162,6 +164,7 @@ h1 {
   display: flex; /* Make the link fill the menu item */
   padding: 5px 10px;
   align-items: center;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
 .dropdown-menu li a:hover {
@@ -186,9 +189,9 @@ h1 {
   max-width: 100%;
 } */
 
-.nav-button:hover {
-  background-color: #e60000; /* Darker red on hover */
-}
+/* .nav-button:hover {
+  background-color: #e60000; 
+} */
 
 /* Side Navbar */
 
@@ -222,6 +225,9 @@ h1 {
   display: flex; /* Use flexbox for horizontal alignment */
   align-items: center; /* Vertically center the icon and text */
   margin: 10px 10px; /* Add spacing between items */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+  padding: 4px 6px;
+  border-radius: 6px;
 }
 
 /* Side Navbar Icons */
@@ -235,10 +241,9 @@ h1 {
   display: block; /* Make the links fill the width of the navbar */
   padding: 10px 15px; /* Add padding for clickable area */
   border-radius: 4px; /* Optional: Add rounded corners */
-  transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
-.side-navbar a:hover {
+.side-navbar li:hover {
   background-color: #003366; /* Darker blue on hover */
 }
 
@@ -257,7 +262,7 @@ form {
   flex-wrap: wrap;
   justify-content: space-between; /* Space between form groups */
   align-items: flex-start; /* Align items to the top */
-  padding: 30px; /* Add padding around the content */
+  padding: 40px; /* Add padding around the content */
   margin-left: 200px;
   height: auto;
   gap: 10px; /* Space between form groups */
@@ -379,6 +384,7 @@ input[type="number"]::-webkit-outer-spin-button {
   border-radius: 10px 0 0 10px; /* Rounded corners on the left */
   outline: none;
   box-sizing: border-box; /* Ensure consistent box model */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
 .input-group button {
@@ -398,11 +404,13 @@ input[type="number"]::-webkit-outer-spin-button {
   top: 4px; /* Adjust position to align with input */
   text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
     1px 1px 0 black;
+  transition: background 0.3s ease;
 }
 
 .plus-button {
   border-radius: 0 !important; /* Remove rounded corners */
   border-left: 3px solid black !important; /* Add left border */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
 .input-group button:hover {
@@ -428,8 +436,6 @@ input[type="number"]::-webkit-outer-spin-button {
 .submit-section button {
   background: linear-gradient(to right, #49a4ff, #0080ff);
   color: white;
-  /* text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
-    1px 1px 0 black; */
   font-size: 2vh;
   font-weight: bold;
   padding: 10px 20px;
