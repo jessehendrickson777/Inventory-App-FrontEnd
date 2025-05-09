@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const dateInput = document.getElementById("date");
+  const dateInputs = document.querySelectorAll("input[type='date']");
   const today = new Date().toISOString().split("T")[0];
-  dateInput.value = today;
+
+  dateInputs.forEach((dateInput) => {
+    dateInput.value = today;
+  });
 });
 
 function increment(inputId) {
@@ -16,20 +19,20 @@ function decrement(inputId) {
   }
 }
 
-const plusButtons = document.querySelectorAll(".plus-button");
-plusButtons.forEach((button) => {
-  button.addEventListener("click", function () {
-    const inputId = button.previousElementSibling.id;
-    increment(inputId);
-  });
-});
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("plus-button")) {
+    const input = e.target.previousElementSibling;
+    if (input && input.type === "number") {
+      input.value = parseInt(input.value || 0) + 1;
+    }
+  }
 
-const minusButtons = document.querySelectorAll(".minus-button");
-minusButtons.forEach((button) => {
-  button.addEventListener("click", function () {
-    const inputId = button.parentElement.querySelector("input");
-    decrement(inputId);
-  });
+  if (e.target.classList.contains("minus-button")) {
+    const input = e.target.parentElement.querySelector("input[type='number']");
+    if (input) {
+      input.value = Math.max(0, parseInt(input.value || 0) - 1);
+    }
+  }
 });
 
 dropdown = document.querySelector(".dropdown");
@@ -55,56 +58,44 @@ document.getElementById("customConfirm1").addEventListener("click", () => {
 });
 
 //submit button & inputFields check
-document.querySelector(".submit").addEventListener("click", (e) => {
-  //   e.preventDefault();
-  const inputFields = [
-    '[name="trailerNumber"]',
-    '[name="date"]',
-    '[name="unprocessedWares"]',
-    '[name="reprocessedWares"]',
-    '[name="unprocessedTextiles"]',
-    '[name="unprocessedBooks"]',
-    '[name="unprocessedShoes"]',
-    '[name="shopGoodwillSkid"]',
-    '[name="salvageWares"]',
-    '[name="salvageTextiles"]',
-    '[name="salvageBooks"]',
-    '[name="salvageShoes"]',
-    '[name="heavySalvage"]',
-    '[name="salvageGlass"]',
-    '[name="furniture"]',
-    '[name="cardboard"]',
-    '[name="trash"]',
-    '[name="plasticSkids"]',
-    '[name="plasticSkidSleeves"]',
-    '[name="woodenSkids"]',
-    '[name="woodenSkidSleeves"]',
-    '[name="totes"]',
-  ];
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("submit")) {
+    e.preventDefault(); // Prevent default form submission
 
-  const isAnyEmpty = inputFields.some((selector) => {
-    const el = document.querySelector(selector);
-    return el.value.trim() === "";
-  });
+    // Find the closest form to the clicked submit button
+    const form = e.target.closest("form");
+    if (!form) return;
 
-  const fieldsToSum = inputFields.filter((selector) => {
-    return (
-      selector !== '[name="trailerNumber"]' && selector !== '[name="date"]'
+    // Get all input fields within the form
+    const inputFields = Array.from(
+      form.querySelectorAll(
+        "input[type='number'], input[type='text'], input[type='date']"
+      )
     );
-  });
 
-  const sum = fieldsToSum.reduce((acc, selector) => {
-    const el = document.querySelector(selector);
-    return acc + (parseInt(el.value) || 0);
-  }, 0);
+    // Check if any input field is empty
+    const isAnyEmpty = inputFields.some((input) => input.value.trim() === "");
 
-  if (isAnyEmpty) {
-    document.getElementById("missedQuestion").style.display = "flex";
-  } else if (sum === 0) {
-    console.log(sum);
-    document.getElementById("customConfirm1").style.display = "flex";
-  } else {
-    document.getElementById("customConfirm2").style.display = "flex";
+    // Calculate the sum of all numeric fields (excluding specific ones if needed)
+    const fieldsToSum = inputFields.filter(
+      (input) =>
+        input.name !== "trailerNumber" &&
+        input.name !== "date" &&
+        input.name !== "storeNumber"
+    );
+    const sum = fieldsToSum.reduce(
+      (acc, input) => acc + (parseInt(input.value) || 0),
+      0
+    );
+
+    // Handle validation and modal display
+    if (isAnyEmpty) {
+      document.getElementById("missedQuestion").style.display = "flex";
+    } else if (sum === 0) {
+      document.getElementById("customConfirm1").style.display = "flex";
+    } else {
+      document.getElementById("customConfirm2").style.display = "flex";
+    }
   }
 });
 
@@ -127,4 +118,27 @@ document.getElementById("confirmNo2").addEventListener("click", () => {
 //missed questions modal
 document.getElementById("missed").addEventListener("click", () => {
   document.getElementById("missedQuestion").style.display = "none";
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const navButtons = document.querySelectorAll(".side-navbar a");
+  const views = document.querySelectorAll(".view");
+
+  navButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault(); // Prevent default anchor behavior
+
+      // Hide all views
+      views.forEach((view) => {
+        view.classList.add("hidden");
+      });
+
+      // Show the target view
+      const targetId = button.getAttribute("href").substring(1); // Get the target ID
+      const targetView = document.getElementById(targetId);
+      if (targetView) {
+        targetView.classList.remove("hidden");
+      }
+    });
+  });
 });
